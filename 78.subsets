@@ -1,0 +1,22 @@
+class Solution {
+    static boolean[] vis;
+    public List<List<Integer>> subsets(int[] nums) {
+        vis = new boolean[nums.length];
+        List<List<Integer>> ans = new ArrayList();
+        List<Integer> list = new ArrayList();
+        dfs(ans,list,nums,0);
+        return ans;
+    }
+    public void dfs(List<List<Integer>> ans, List<Integer> list, int[] nums, int idx){
+        if(idx == nums.length){
+            ans.add(new ArrayList(list));
+            return;
+        }
+        vis[idx] = false;
+        dfs(ans, list, nums, idx + 1);
+        vis[idx] = true;
+        list.add(nums[idx]);
+        dfs(ans, list, nums, idx + 1);
+        list.remove(list.size()-1);
+    }
+}
