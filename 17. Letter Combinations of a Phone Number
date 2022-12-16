@@ -1,0 +1,32 @@
+private void fillHashMap(HashMap<Character,String> hm){
+        hm.put('2',"abc");
+        hm.put('3',"def");
+        hm.put('4',"ghi");
+        hm.put('5',"jkl");
+        hm.put('6',"mno");
+        hm.put('7',"pqrs");
+        hm.put('8',"tuv");
+        hm.put('9',"wxyz");
+    }
+
+    public List<String> letterCombinations(String digits) {
+        List<String> list = new ArrayList();
+        if(digits.equals("")) return list;
+        HashMap<Character,String> map = new HashMap();
+        fillHashMap(map);
+        StringBuilder sb = new StringBuilder();
+        fill(list,digits,sb,map,0);
+        return list;
+    }
+    public void fill(List<String> li ,String digits,StringBuilder sb,HashMap<Character,String> map,int idx){
+        if(idx==digits.length()){
+            li.add(sb.toString());
+            return;
+        }
+        String str = map.get(digits.charAt(idx));
+        for(int i = 0; i<str.length();++i){
+            sb.append(str.charAt(i));
+            fill(li,digits,sb,map,idx+1);
+            sb.setLength(sb.length()-1);
+        }
+    }
