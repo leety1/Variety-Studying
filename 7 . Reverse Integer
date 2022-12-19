@@ -1,0 +1,16 @@
+class Solution {
+    public int reverse(int x) {
+        boolean flag = false;
+        if(x < 0){x = -x; flag = true;}
+        int tmp = 0;
+        long rvs = 0;
+        while(0 < x){
+            rvs = rvs * 10 + x%10;
+            x/=10;
+        }
+        int max = Integer.MAX_VALUE;
+        if(rvs > max) rvs = 0;
+        System.out.println(rvs);
+        return (int)(flag ? -rvs:rvs);
+    }
+}
