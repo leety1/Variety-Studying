@@ -1,0 +1,15 @@
+class Solution {
+    public int findTargetSumWays(int[] nums, int target) {
+        return dfs(nums, target, 0, 0, 0);
+    }
+    public int dfs(int[] nums, int target, int idx, int cnt, int sum){
+        if(nums.length == idx){
+            if(sum == target) cnt++;
+            return cnt;
+        }
+
+        int pos = dfs(nums, target, idx + 1, cnt, sum + nums[idx]);
+        int neg = dfs(nums, target, idx + 1, cnt, sum - nums[idx]);
+        return pos + neg;
+    }
+}
