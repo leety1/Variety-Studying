@@ -1,0 +1,13 @@
+class Solution {
+    public boolean isUgly(int n) {
+        if(n <= 0) return false;
+        return re(n);
+    }
+    public boolean re(int n){
+        if(n == 1) return true;
+        return ((n%2 == 0) && re(n/2) || (n%3==0) && re(n/3) || (n%5==0) && re(n/5));
+        //재귀로 풀면서 n이 작아지는것을 실행해봤다.
+        //n을 계속 while로 줄이고 싶은데 어떻게 하지? 이러다가 재귀를 찾았고
+        //이를 통해 n을 줄이면서 원하는 조건에 계속 넣는 방법을 학습했다.
+    }
+}
