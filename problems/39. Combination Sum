@@ -1,0 +1,19 @@
+class Solution {
+    public List<List<Integer>> combinationSum(int[] candidates, int target) {
+        List<List<Integer>> ans = new ArrayList();
+        List<Integer> list = new ArrayList();
+        re(ans,list,candidates,target,0);
+        return ans;
+    }
+    public void re(List<List<Integer>> ans,List<Integer> list,int[] candi,int target,int start){
+        if(target < 0) return ;
+        if(target == 0) ans.add(new ArrayList<>(list));
+        else{
+            for(int i = start; i < candi.length; ++i){
+                list.add(candi[i]);
+                re(ans,list,candi,target - candi[i],i);
+                list.remove(list.size() - 1);
+            }
+        }
+    }
+}
