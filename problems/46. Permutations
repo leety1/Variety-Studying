@@ -1,0 +1,26 @@
+class Solution {
+    public List<List<Integer>> permute(int[] nums) {
+        List<List<Integer>> ans = new ArrayList();
+        permutation(nums, ans, 0);
+        return ans;
+    }
+    static void permutation(int[] nums, List<List<Integer>> ans, int idx){
+        if(nums.length == 0 || nums == null) return;
+        if(nums.length == idx){
+            List<Integer> list = new ArrayList();
+            for(Integer i : nums)
+                list.add(i);
+            ans.add(list);
+            return;
+        }
+        for(int i = idx; i < nums.length; ++i){
+            int tmp = nums[idx];
+            nums[idx] = nums[i];
+            nums[i] = tmp;
+            permutation(nums,ans,idx + 1);
+            tmp = nums[idx];
+            nums[idx] = nums[i];
+            nums[i] = tmp;
+        }
+    }
+}
