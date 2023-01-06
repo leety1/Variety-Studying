@@ -1,0 +1,10 @@
+class Solution {
+    public boolean isUgly(int n) {
+        if(n == 0) return false;
+        return recursion(n);
+    }
+    public boolean recursion(int n){
+        if(n == 1) return true;
+        return ((n%2 == 0) && recursion (n/2) || (n%3 == 0) && recursion(n/3) || (n%5 == 0) && recursion(n/5));
+    }
+}
