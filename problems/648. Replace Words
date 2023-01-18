@@ -1,0 +1,24 @@
+class Solution {
+    public String replaceWords(List<String> dictionary, String sentence) {
+        if(dictionary.size() == 0 || dictionary.isEmpty()) return null;
+
+        String[] str = sentence.split(" ");
+        int start = 0 , end = dictionary.size();
+        StringBuilder sb = new StringBuilder();
+        String spl = " ";
+        int cnt = 0;
+        Set<String> set = new HashSet();
+        for(String s : dictionary) set.add(s);
+
+        for(int i = 0 ; i < str.length ; ++i){
+            String s = str[i];
+            for(int j = 1 ; j <= s.length(); ++j){
+                spl = s.substring(0,j);
+                if(set.contains(spl)) s = spl;
+            }
+            sb.append(s+" ");
+        }
+        System.out.println(sb);
+        return sb.deleteCharAt(sb.length()-1).toString();
+    }
+}
