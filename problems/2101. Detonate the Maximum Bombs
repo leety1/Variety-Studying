@@ -1,0 +1,25 @@
+class Solution {
+    public int maximumDetonation(int[][] bombs) {
+        int max = 0;
+        for(int i = 0 ; i < bombs.length; ++i){
+            max = Math.max(max, MaxDFS(i, bombs, new boolean[bombs.length]));
+        }
+        return max;
+    }
+    private int MaxDFS(int idx, int[][] bombs, boolean[] seen){
+        int cnt = 1;
+        seen[idx] = true;
+
+        for(int i = 0 ; i < bombs.length; ++i){
+            if(!seen[i] && Range(bombs[idx], bombs[i])){
+                cnt += MaxDFS(i, bombs, seen);
+            }
+        }
+        return cnt;
+    }
+    private boolean Range(int[] point1, int[] point2){
+        long dx = point1[0] - point2[0], dy = point1[1] - point2[1], radius = point1[2];
+        long distance = dx * dx + dy * dy;
+        return distance <= radius * radius;
+    }
+}
