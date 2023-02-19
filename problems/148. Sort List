@@ -1,0 +1,24 @@
+class Solution {
+    public ListNode sortList(ListNode head) {
+        ListNode tmp = head;
+        int idx = 0;
+        
+        while(tmp != null){
+            idx++; tmp = tmp.next;
+        }
+        int[] arr = new int[idx];
+        tmp = head; idx = 0;
+        while(tmp != null){
+            arr[idx++] = tmp.val;
+            tmp = tmp.next;
+        }
+        Arrays.sort(arr);
+        int idx2 = 0;
+        tmp = head; 
+        while(tmp != null){
+            tmp.val = arr[idx2++];
+            tmp = tmp.next;
+        }
+        return head;
+    }
+}
