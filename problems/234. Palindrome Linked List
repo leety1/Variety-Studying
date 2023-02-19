@@ -1,0 +1,17 @@
+class Solution {
+    public boolean isPalindrome(ListNode head) {
+        List<Integer> list = new ArrayList();
+        list.add(head.val);
+
+        while(head.next != null){
+            head = head.next;
+            list.add(head.val);
+        }
+
+        for(int i = 0 ;  i < list.size() / 2; ++i){
+            //처음 뽑은거랑 처음 빼기 마지막부터 하나씩 쭈는거랑 같은가?
+            if(!list.get(i).equals(list.get(list.size() - i - 1))) return false;
+        }
+        return true;
+    }
+}
