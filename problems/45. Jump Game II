@@ -1,0 +1,15 @@
+class Solution {
+    public int jump(int[] nums) {
+        int max = 0, j = 0 , save = 0;
+        if(nums.length == 1) return 0;
+        for(int i = 0 ; i  < nums.length; ++i){
+            max = Math.max(max, i + nums[i]);
+            if(save == i){
+                save = max;
+                ++j;
+                if(max >= nums.length - 1) break;
+            }
+        }
+        return j;
+    }
+}
