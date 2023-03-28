@@ -34,3 +34,23 @@ class Solution {
         return dp.getOrDefault(target, 0);
     }
 }
+
+
+/// python
+class Solution:
+    def findTargetSumWays(self, nums: List[int], target: int) -> int:
+        memo = {}
+        def targetSum(arr, target, n):
+            if(target, n) in memo :
+                return memo[(target, n)]
+            if target == 0 and n == 0:
+                return 1
+            if n == 0:
+                return 0
+            positive = targetSum(arr, target - arr[n - 1], n - 1)
+            negative = targetSum(arr, target + arr[n - 1], n - 1)
+
+            memo[(target, n)] = positive + negative
+            return positive + negative
+        answer = targetSum(nums, target, len(nums))
+        return answer
